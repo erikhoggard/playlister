@@ -1,0 +1,13 @@
+{
+    "name": "playlister",
+    "version": "1.0.0",
+    "description": "Discord YT Playlist Bot",
+    "main": "bot.js",
+    "author": "Erik Hoggard",
+    "dependencies": {
+        "discord.io": "https://github.com/woor/discord.io/tarball/gateway_v6",
+        "discord.js": "^12.0.2",
+        "node-url-shortener": "^1.0.1",
+        "winston": "^3.2.1"
+    }
+}
