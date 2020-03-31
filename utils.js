@@ -1,0 +1,10 @@
+module.exports.shuffle = (array) => {
+    let arr = array;
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * i)
+        const temp = array[i]
+        arr[i] = array[j]
+        arr[j] = temp
+    }
+    return arr;
+}

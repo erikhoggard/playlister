@@ -2,6 +2,7 @@ var Discord = require('discord.js');
 var logger = require('winston');
 var shortUrl = require('node-url-shortener');
 var auth = require('./auth.json');
+const shuffle = requrie('./utils').shuffle;
 
 logger.remove(logger.transports.Console);
 logger.add(new logger.transports.Console, {
@@ -51,10 +52,12 @@ bot.on('message', async function(message) {
                     } while (currMessages.size === 100);
 
                     //only concerned with embedded links, for now
-                    const playlistUrl = allMessages
+                    const vidIds = allMessages
                         .filter(x => x[1].embeds.length === 1 && x[1].embeds[0].url.startsWith("https://www.youtube.com/watch?v="))
                         .map(([, { embeds: [{ url }] }]) => url.split("https://www.youtube.com/watch?v=")[1].split("&")[0])
-                        .reverse() // getMessages() returns messages in a reverse order
+
+                    //since we can only make playlists of <50 vids, shuffle so we dont' always take the same first 50 
+                    const playlistUrl = shuffle(playlist)
                         .join(',')
                         .replace(/^/, "https://www.youtube.com/watch_videos?video_ids=");
 
